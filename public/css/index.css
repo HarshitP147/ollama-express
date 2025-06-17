@@ -1,0 +1,32 @@
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #50e3c2;
+    --background-color: #f5f7fa;
+    --text-color: #333333;
+    --border-color: #e0e0e0;
+    --font-family: 'Arial', sans-serif;
+    --font-size: 16px;
+    --button-padding: 10px 20px;
+    --button-border-radius: 5px;
+    --input-padding: 10px;
+    --input-border-radius: 5px;
+    --card-padding: 20px;
+    --card-border-radius: 10px;
+    --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --transition-duration: 0.3s;
+    --hover-color: #e0e0e0;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    color: var(--text-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    color: var(--primary-color);
+}
+

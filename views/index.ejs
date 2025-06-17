@@ -5,19 +5,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        :root {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #chatResponse {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            width: 300px;
+            text-align: center;
+        }
+
+        #chatForm {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #prompt {
+            width: 300px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 
 <body>
     <h1>Hello <%= name %></h1>
 
-    <form id="chatForm" action="/" method="POST">
+    <form id="chatForm">
         <input type="text" id="prompt" placeholder="Enter prompt here" />
-        <button type="submit">Submit form</button>
+        <button type="submit">Send prompt</button>
     </form>
 
 
     <span id="chatResponse"></span>
 
+    <script>
+        document.getElementById('chatForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const prompt = document.getElementById('prompt').value;
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ prompt: prompt })
+            })
+                .then(data => {
+                    console.dir(data);
+                    // document.getElementById('chatResponse').textContent = data.response;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            document.getElementById('prompt').value = ''; // Clear the input field
+        });
+    </script>
 </body>
 
 </html>
